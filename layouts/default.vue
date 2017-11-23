@@ -6,8 +6,8 @@
       <router-link :to="{ name: 'index' }">
         <img
           src="/stilnyeokna-logo.jpg"
-          height="55px"
-          alt="StilnyeOkna.com"
+          height="50px"
+          alt="stilnyeokna.com"
         >
       </router-link>
 
@@ -61,7 +61,7 @@
     </v-navigation-drawer>
 
     <v-footer app>
-      <span>&copy; 2017</span>
+      <span>&copy; 2007-2017</span>
     </v-footer>
   </v-app>
 </template>
@@ -70,7 +70,8 @@
   export default {
     data () {
       return {
-        title: 'StilnyeOkna',
+        title: 'СТИЛЬНЫЕ ОКНА',
+        email: 'stilnyeokna@mail.ua',
         items: [
           { icon: 'home', title: 'Главная', to: '/' },
           { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
@@ -83,3 +84,9 @@
     }
   }
 </script>
+
+<style>
+  * {
+    font-family: 'Exo 2', sans-serif;
+  }
+</style>
