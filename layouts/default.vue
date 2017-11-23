@@ -1,19 +1,54 @@
 <template>
   <v-app light>
+
+    <v-toolbar fixed app :clipped-left="clipped">
+
+      <router-link :to="{ name: 'index' }">
+        <img
+          src="/stilnyeokna-logo.jpg"
+          height="55px"
+          alt="StilnyeOkna.com"
+        >
+      </router-link>
+
+      <v-spacer></v-spacer>
+
+      <v-toolbar-items
+        class="hidden-sm-and-down"
+        v-for="item in items"
+        :key="item.title"
+      >
+        <v-btn flat router exact :to="item.to">
+          <v-icon v-html="item.icon"></v-icon>
+          {{ item.title }}
+        </v-btn>
+      </v-toolbar-items>
+
+      <v-toolbar-side-icon class="hidden-md-and-up" @click="drawer = !drawer"></v-toolbar-side-icon>
+    </v-toolbar>
+
+    <v-content>
+      <v-container>
+        <nuxt />
+      </v-container>
+    </v-content>
+
     <v-navigation-drawer
-      :mini-variant="miniVariant"
+      disable-resize-watcher
+      disable-route-watcher
       :clipped="clipped"
       v-model="drawer"
+      right
       fixed
       app
     >
       <v-list>
         <v-list-tile 
           router
+          exact
           :to="item.to"
           :key="i"
           v-for="(item, i) in items"
-          exact
         >
           <v-list-tile-action>
             <v-icon v-html="item.icon"></v-icon>
@@ -24,56 +59,8 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar fixed app :clipped-left="clipped">
-      <v-toolbar-side-icon @click="drawer = !drawer"></v-toolbar-side-icon>
-      <v-btn 
-        icon
-        @click.stop="miniVariant = !miniVariant"
-      >
-        <v-icon v-html="miniVariant ? 'chevron_right' : 'chevron_left'"></v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="clipped = !clipped"
-      >
-        <v-icon>web</v-icon>
-      </v-btn>
-      <v-btn
-        icon
-        @click.stop="fixed = !fixed"
-      >
-        <v-icon>remove</v-icon>
-      </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
-    <v-content>
-      <v-container>
-        <nuxt />
-      </v-container>
-    </v-content>
-    <v-navigation-drawer
-      temporary
-      :right="right"
-      v-model="rightDrawer"
-      fixed
-    >
-      <v-list>
-        <v-list-tile @click.native="right = !right">
-          <v-list-tile-action>
-            <v-icon light>compare_arrows</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-title>Switch drawer (click me)</v-list-tile-title>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-footer :fixed="fixed" app>
+
+    <v-footer app>
       <span>&copy; 2017</span>
     </v-footer>
   </v-app>
@@ -83,17 +70,15 @@
   export default {
     data () {
       return {
-        clipped: false,
-        drawer: true,
-        fixed: false,
+        title: 'StilnyeOkna',
         items: [
-          { icon: 'apps', title: 'Welcome', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+          { icon: 'home', title: 'Главная', to: '/' },
+          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'build', title: 'Услуги', to: '/services' },
+          { icon: 'perm_phone_msg', title: 'Контакты', to: '/contacts' }
         ],
-        miniVariant: false,
-        right: true,
-        rightDrawer: false,
-        title: 'StilnyeOkna'
+        drawer: false,
+        clipped: false
       }
     }
   }
