@@ -1,15 +1,52 @@
 <template>
-  <v-layout>
-    <v-flex text-xs-center>
-      <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      <blockquote class="blockquote">
-        &#8220;First, solve the problem. Then, write the code.&#8221;
-        <footer>
-          <small>
-            <em>&mdash;John Johnson</em>
-          </small>
-        </footer>
-      </blockquote>
-    </v-flex>
-  </v-layout>
-</template>
+  <v-container fluid>
+    <v-layout row>
+      <v-flex xs4>
+        <v-card>
+          <v-card-media
+          class="grey--text"
+            height="270px"
+            src="window.png"
+            
+          >
+          </v-card-media>
+          <v-card-text>
+            <div>
+                <router-link :to="{ name: 'index' }"> <h4 class="text-xs-center">МПО</h4></router-link>
+            </div>
+          </v-card-text>
+        </v-card>
+      </v-flex>
+      <v-flex xs4>
+          <v-card>
+            <v-card-media
+            class="grey--text"
+              height="270px"
+              src="maf.jpg"
+            >
+            </v-card-media>
+            <v-card-text>
+              <div>
+                  <router-link :to="{ name: 'index' }"> <h4 class="text-xs-center">МАФЫ</h4></router-link>
+              </div>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+        <v-flex xs4>
+            <v-card>
+              <v-card-media
+              class="grey--text"
+                height="270px"
+                src="rollet.jpg"
+              >
+              </v-card-media>
+              <v-card-text>
+                <div>
+                    <router-link :to="{ name: 'index' }"> <h4 class="text-xs-center">Роллеты</h4></router-link>
+                </div>
+              </v-card-text>
+            </v-card>
+          </v-flex>
+    </v-layout>
+  </v-container>
+</template>  
