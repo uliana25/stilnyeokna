@@ -1,8 +1,10 @@
 <template>
   <v-app light>
 
-    <v-toolbar fixed app :clipped-left="clipped">
-
+    <v-toolbar fixed app :clipped-left="clipped" :extended="currentRoute">
+      <v-toolbar-title class="white--text" v-for="item in items"></v-toolbar-title>
+      <v-toolbar-title class="grey--text" slot="extension" v-for="item in subItems">{{item.title}}</v-toolbar-title>
+      
       <router-link :to="{ name: 'index' }">
         <img
           src="/stilnyeokna-logo.jpg"
@@ -70,15 +72,32 @@
   export default {
     data () {
       return {
+        active: false,
         title: 'StilnyeOkna',
         items: [
           { icon: 'home', title: 'Главная', to: '/' },
-          { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+          { icon: 'bubble_chart',
+            title: 'Inspire',
+            to: '/inspire',
+            sub: [
+              {title: 'Windows', to: ''},
+              {title: 'MAFs', to: ''},
+              {title: 'Rollets', to: ''}
+            ]
+          },
           { icon: 'build', title: 'Услуги', to: '/services' },
           { icon: 'perm_phone_msg', title: 'Контакты', to: '/contacts' }
         ],
         drawer: false,
         clipped: false
+      }
+    },
+
+    computed: {
+      subItems () {
+        const currentRoute = this.$route.path || ''
+        const item = this.items.find(el => el.to === currentRoute)
+        return item.sub
       }
     }
   }
