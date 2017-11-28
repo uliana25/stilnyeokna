@@ -69,25 +69,14 @@
 </template>
 
 <script>
+  import items from '@/assets/navigation'
+
   export default {
     data () {
       return {
         active: false,
         title: 'StilnyeOkna',
-        items: [
-          { icon: 'home', title: 'Главная', to: '/' },
-          { icon: 'bubble_chart',
-            title: 'Inspire',
-            to: '/inspire',
-            sub: [
-              {title: 'Windows', to: ''},
-              {title: 'MAFs', to: ''},
-              {title: 'Rollets', to: ''}
-            ]
-          },
-          { icon: 'build', title: 'Услуги', to: '/services' },
-          { icon: 'perm_phone_msg', title: 'Контакты', to: '/contacts' }
-        ],
+        items,
         drawer: false,
         clipped: false
       }
